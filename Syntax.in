@@ -1,0 +1,20 @@
+Syntax.in
+
+declaration := "var" IDENTIFIER ":" type ["=" expression]
+type := "Int" | "Char" | "String" | "Array"
+expression := CONSTANT | ArrayValues | mathExpression
+ArrayValues := "[" IDENTIFIER, "]"
+iostmt := "trace(" IDENTIFIER ")" | "input()"
+mathExpression := mathExpression "+" term | mathExpression "-" term
+term := CONSTANT | term "*" factor | factor | term "/" factor | term "%" factor
+factor := "(" mathExpression ")" | IDENTIFIER | CONSTANT
+simplstmt := assignmntstmt | iostmt | declaration
+assignmntstmt := IDENTIFIER ":=" expression
+stmtlist := stmt | stmt ";" stmtlist
+cmpdstmt := "{" stmtlist "}"
+structstmt := cmpdstmt | ifstmt | whilestmt | forstmt
+ifstmt := "if" condition structstmt ["else" structstmt]
+whilestmt := "while" condition structstmt
+forstmt := "for (" declaration ";" condition ";" simplstmt ")" structstmt
+condition := expression RELATION expression
+RELATION := "<" | ">" | "<=" | ">=" | "!=" | "=="
