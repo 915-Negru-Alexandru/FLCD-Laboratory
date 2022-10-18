@@ -1,0 +1,24 @@
+//max of 3 numbers
+
+var a: Int;
+var b: Int;
+var c: Int;
+var max: Int = 0;
+
+a = input();
+b = input();
+c = input();
+
+if (a > max){
+  max = a;
+}
+
+if (b > max){
+  max = b;
+}
+
+if (c > max){
+  max = c;
+}
+
+trace(max);
