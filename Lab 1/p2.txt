@@ -1,0 +1,15 @@
+//compute a^b
+
+var a: Int;
+var b: Int;
+
+a = input();
+b = input();
+
+var result: Int = 1;
+
+for (var i: Int = 1; i <= b; i = i+1){
+  result = result*a;
+}
+
+trace(result);
