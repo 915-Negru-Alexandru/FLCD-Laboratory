@@ -1,0 +1,14 @@
+//compute the sum of n numbers
+
+var x: Int;
+var n: Int;
+var sum: Int = 0;
+
+n = input();
+
+for(var i: Int = 0; i < n; i = i+1){
+  x = input();
+  sum = sum + x;
+}
+
+trace(sum);
