@@ -1,0 +1,25 @@
+There are classes for the Symbol Table (BasicST.py) and for the PIF (PIF.py).
+The program takes a text file with the program and breaks it into lines, then the lines into tokens with a regex check. Each token is put into a list. It then checked against the tokens from token.in, the ones already saved in the symbol tables, and if it was not found there, it is checked against more regexes for integers, character constants, symbol names, or strings. If it didn't pass any of the checks, an output about the lexical error will be shown, along with the line where that token was found.
+
+
+
++---------------------------------+
+|PIF:                             |
+|---------------------------------|
+|-elements: list                  |
+|---------------------------------|
+|+add(element, element_type)      |
+|+print_table()                   |
++---------------------------------+
+
++---------------------------------+
+|Symbol Table:                    |
+|---------------------------------|
+|-size: int                       |
+|-bst: BST                        |
+|---------------------------------|
+|+add(element)                    |
+|+search(element)                 |
+|+print_table()                   |
++---------------------------------+
+
