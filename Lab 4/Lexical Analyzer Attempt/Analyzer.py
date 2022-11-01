@@ -12,7 +12,15 @@ from PIF import PIF
 #  check for constants (for the moment, you only have identifiers)
 
 def do_checks(token):
-    return True
+    if re.match("([1-9][0-9]*)|([0]+)|(-([1-9][0-9]*))$", token):  # integer
+        return True
+    if re.match("\'.$\'", token):  # character constant
+        return True
+    if re.match("([a-z]|[A-Z]|[0-9]|[_])*$", token):  # symbol name
+        return True
+    if re.match("\".*\"$", token):  # string constant
+        return True
+    return False
 
 
 def analyze(file):
@@ -48,8 +56,8 @@ def analyze(file):
     except FileNotFoundError:
         print("Token file does not exists: token.in")
         return
-    lines = fin.readlines()
-    for line in lines:
+    lines_token = fin.readlines()
+    for line in lines_token:
         known_tokens.append(line[:-1])
 
     symbol_table = SymbolTable()
@@ -65,13 +73,13 @@ def analyze(file):
                 token_pif.add(token, "id:" + str(symbol_table.search(token)))
             else:
                 first_line = -1
-                error_line = 0
+                error_line = 1
                 for line in lines:
-                    if first_line == -1 and token in line:
+                    if (first_line == -1) and (token in line):
                         first_line = error_line
                     error_line += 1
                 print("Lexical error! I have no idea what \"" + token + "\" is.")
-                print("It was found at line " + str(error_line) + ".")
+                print("It was found at line " + str(first_line) + ".")
                 return
 
     symbol_table.print_table()
@@ -82,4 +90,4 @@ if __name__ == '__main__':
     # file_name = input("Enter file name: ")
     # file_name = "input/" + file_name
     # analyze(file_name)
-    analyze("input/p1.txt")
+    analyze("input/p3.txt")

@@ -6,9 +6,9 @@ var sum: Int = 0;
 
 n = input();
 
-for(var i: Int = 0; i < n; i++){
+for(var i: Int = 0; i < n; i = i+1){
   x = input();
-  sum = sum + x;
+  sum = sum & x;
 }
 
 trace(sum);
