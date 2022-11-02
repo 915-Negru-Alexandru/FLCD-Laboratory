@@ -11,7 +11,7 @@ The program takes a text file with the program and breaks it into lines, then th
 |+add(element, element_type)      |
 |+print_table()                   |
 +---------------------------------+
-
+                
 +---------------------------------+
 |Symbol Table:                    |
 |---------------------------------|

@@ -4,21 +4,14 @@ from BasicST import SymbolTable
 from PIF import PIF
 
 
-#  PIF - PROGRAM INTERNAL FORM (tabelul cu tokenii)
-#  ST - SYMBOL TABLE
-
-#  pentru 3 de exemplu, definim un regex care verifica ca e numar, la fel pentru string, etc
-#  documentatie: explicat regex, algoritmul pe scurt, diagrama de clase
-#  check for constants (for the moment, you only have identifiers)
-
 def do_checks(token):
-    if re.match("([1-9][0-9]*)|([0]+)|(-([1-9][0-9]*))$", token):  # integer
+    if re.match("^([1-9][0-9]*)|([0]+)|(-([1-9][0-9]*))$", token):  # integer
         return True
-    if re.match("\'.$\'", token):  # character constant
+    if re.match("^\'.\'$", token):  # character constant
         return True
-    if re.match("([a-z]|[A-Z]|[0-9]|[_])*$", token):  # symbol name
+    if re.match("^([a-z]|[A-Z]|[0-9]|[_])*$", token):  # symbol name
         return True
-    if re.match("\".*\"$", token):  # string constant
+    if re.match("^\".*\"$", token):  # string constant
         return True
     return False
 
@@ -44,6 +37,7 @@ def analyze(file):
             continue
         line = line[:-1]
         short_tokens = re.split("(\W)", line)
+
         for token in short_tokens:
             if token not in [" "] and len(token):
                 tokens.append(token)
@@ -59,6 +53,11 @@ def analyze(file):
     lines_token = fin.readlines()
     for line in lines_token:
         known_tokens.append(line[:-1])
+
+    for i in range(0, len(tokens) - 2):
+        if (tokens[i]+tokens[i+1]) in known_tokens:
+            tokens[i] = tokens[i] + tokens[i+1]
+            tokens.pop(i+1)
 
     symbol_table = SymbolTable()
 
@@ -90,4 +89,4 @@ if __name__ == '__main__':
     # file_name = input("Enter file name: ")
     # file_name = "input/" + file_name
     # analyze(file_name)
-    analyze("input/p3.txt")
+    analyze("input/p2.txt")
