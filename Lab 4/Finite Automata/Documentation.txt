@@ -1,0 +1,19 @@
+There is only one class, "FiniteAutomata". It can read the input, which has to be formatted according to "File Structure Form.txt". If it is not, the program won't run. It has a method for displaying the menu and reading the input, and it can check if a sequence is valid for the automata or not, with the "run_law" and "apply_transition" methods. For storing the data, lists of strings were used. For applying a transition, each next state is looked up for, in the list of transition functions. If one was found, it is applied, and we move on to the next state. The run fails if no transition is found and we didn't reach the final state yet, or if not all states were passed through.
+               
+
+----------Class Diagram------------
++---------------------------------+
+|FiniteAutomata:                  |
+|---------------------------------|
+|-set_of_statesint                |
+|-initial_statesBST               |
+|-final_states		          |
+|-input_symbols		          |
+|-transition_functions	          |
+|---------------------------------|
+|+read_input(file)                |
+|+apply_transition(f_s, l_t_u     |
+|+run_law(sequence                |
+|+menu()                          |
++---------------------------------+
+

@@ -1,0 +1,10 @@
+FA. in := "SS: " SetOfStates endl "IS: " InitialState endl "FS: " FinalState endl "AL: " SymbolsSet endl "TF: " TransitionFunctions 
+endl := "\n"
+SetOfStates := state | state " " SetOfStates
+InitialState := state
+FinalState := state
+SymbolsSet := symbol | symbol " " SymbolsSet
+TransitionFunctions := function | function "|" TransitionFunctions
+state := a...z|A...Z
+symbol := 0...9
+function := state "-" symbol "-" state
