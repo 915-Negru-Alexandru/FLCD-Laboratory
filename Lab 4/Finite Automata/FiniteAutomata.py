@@ -58,9 +58,24 @@ class FiniteAutomata:
             else:
                 print("Run " + sequence + " not accepted")
 
+    def check_determinism(self):
+        for function in self.__transition_functions:
+            start_state = function.split('-')[0]
+            law = function.split('-')[1]
+            end_state = function.split('-')[2]
+            for other_function in self.__transition_functions:
+                other_start_state = other_function.split('-')[0]
+                other_law = other_function.split('-')[1]
+                other_end_state = other_function.split('-')[2]
+                if start_state == other_start_state and law == other_law and end_state != other_end_state:
+                    return False
+        return True
+
+
+
     def menu(self):
         print("----\n0.Exit\n1.Print Set of States\n2.Print Initial State\n3.Print Final State\n4."
-              "Print Set of Symbols\n5.Print Transition Functions\n6.Run Sequence\n----")
+              "Print Set of Symbols\n5.Print Transition Functions\n6.Run Sequence\n7.Check deterministic\n----")
         option = None
         while option != '0':
             option = input(">>")
@@ -92,5 +107,10 @@ class FiniteAutomata:
                     if transition not in self.__input_symbols:
                         print("Sequence Invalid")
                 self.run_law(sequence_to_run)
+            elif option == '7':
+                if self.check_determinism():
+                    print("FA is deterministic")
+                else:
+                    print("FA is not deterministic")
             else:
                 print(option + " is an invalid option!")

@@ -7,8 +7,8 @@ There is only one class, "FiniteAutomata". It can read the input, which has to b
 |---------------------------------|
 |-set_of_statesint                |
 |-initial_statesBST               |
-|-final_states		          |
-|-input_symbols		          |
+|-final_states                    |
+|-input_symbols                   |
 |-transition_functions	          |
 |---------------------------------|
 |+read_input(file)                |
