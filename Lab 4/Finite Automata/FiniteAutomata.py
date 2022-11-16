@@ -102,15 +102,18 @@ class FiniteAutomata:
                     end_state = function.split('-')[2]
                     print(start_state + ", " + law + " -> " + end_state)
             elif option == '6':
-                sequence_to_run = input("Sequence: ")
-                for transition in sequence_to_run:
-                    if transition not in self.__input_symbols:
-                        print("Sequence Invalid")
-                self.run_law(sequence_to_run)
+                if not self.check_determinism():
+                    print("FA is not deterministic!")
+                else:
+                    sequence_to_run = input("Sequence: ")
+                    for transition in sequence_to_run:
+                        if transition not in self.__input_symbols:
+                            print("Sequence Invalid")
+                    self.run_law(sequence_to_run)
             elif option == '7':
                 if self.check_determinism():
                     print("FA is deterministic")
                 else:
-                    print("FA is not deterministic")
+                    print("FA is not deterministic!")
             else:
                 print(option + " is an invalid option!")
