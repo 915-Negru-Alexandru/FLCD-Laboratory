@@ -1,7 +1,7 @@
 class FiniteAutomata:
     def __init__(self):
         self.__set_of_states = None
-        self.__initial_states = None
+        self.__initial_states = None   # !!!
         self.__final_states = None
         self.__input_symbols = None
         self.__transition_functions = None
@@ -74,7 +74,7 @@ class FiniteAutomata:
 
 
     def menu(self):
-        print("----\n0.Exit\n1.Print Set of States\n2.Print Initial State\n3.Print Final State\n4."
+        print("----\n0.Exit\n1.Print Set of States\n2.Print Initial State\n3.Print Final States\n4."
               "Print Set of Symbols\n5.Print Transition Functions\n6.Run Sequence\n7.Check deterministic\n----")
         option = None
         while option != '0':
