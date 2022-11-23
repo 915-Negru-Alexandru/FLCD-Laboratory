@@ -1,3 +1,5 @@
+# Work on LL(1)
+
 class Grammar:
     def __init__(self):
         self.terminals = []
