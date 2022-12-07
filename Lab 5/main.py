@@ -49,8 +49,8 @@ class Grammar:
         self.print_non_terminals()
         self.print_terminals()
         self.print_set_of_productions()
-        self.print_productions_for_terminal("while_stmt")
-        self.print_productions_for_terminal("relation")
+        self.print_productions_for_terminal("whilestmt")
+        self.print_productions_for_terminal("RELATION")
         self.check_cfg()
 
     def print_non_terminals(self):
@@ -102,4 +102,4 @@ class Grammar:
 
 if __name__ == '__main__':
     grammar = Grammar()
-    grammar.read_grammar("example.txt")
+    grammar.read_grammar("g2.txt")
