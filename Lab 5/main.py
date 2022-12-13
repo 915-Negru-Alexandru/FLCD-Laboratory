@@ -52,6 +52,7 @@ class Grammar:
         self.print_productions_for_terminal("whilestmt")
         self.print_productions_for_terminal("RELATION")
         self.check_cfg()
+        self.first()
 
     def print_non_terminals(self):
         print("------------- NON TERMINALS ----------------")
@@ -99,7 +100,28 @@ class Grammar:
         print("Grammar CFG")
         print("--------------------------------------------")
 
+    def first(self, symbol):
+        print("------------------ FIRST -------------------")
+        first = {}
+
+        if symbol in self.terminals:
+            return {symbol: symbol}
+
+        for production in self.production_rules:
+            print(production)
+            if production[0] == symbol:
+                first[symbol].update(self.first(symbol))
+
+        print("--------------------------------------------")
+
+    def follow(self, symbol):
+        print("------------------ FIRST -------------------")
+
+        # CODE FOR FOLLOW
+
+        print("--------------------------------------------")
+
 
 if __name__ == '__main__':
     grammar = Grammar()
-    grammar.read_grammar("g2.txt")
+    grammar.read_grammar("g1.txt")
