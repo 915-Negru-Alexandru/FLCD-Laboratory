@@ -81,26 +81,51 @@ class Grammar:
             for column in self.parsing_table[line]:
                 if line == column:
                     self.parsing_table[line][column] = 'POP'
-        self.parsing_table['$']['$'] = "ACC"
+                elif True:
+                    result = "o"
+                    for i in range(0, len(self.production_rules)):
+                        # print(self.production_rules[i])
+                        if self.production_rules[i][0] == line:
+                            result = "x" + "," + str(i)
+                    self.parsing_table[line][column] = result
 
+
+        # for line in self.parsing_table:
+        #     for column in self.parsing_table[line]:
+        #         if line == column:
+        #             self.parsing_table[line][column] = 'POP'
+        #         elif len(self.parsing_table) > 0:  # Delete this 'len', do a case
+        #             for i in range(0, len(self.production_rules)):
+        #                 result = " "
+        #                 # for frst in self.first(line):
+        #                 #     if frst == :  # TODO: Complete FIRST and apply rule here
+        #                 if self.production_rules[i][0] == line:
+        #                     result = "x" + "," + str(i)  # There is a bug here
+        #             self.parsing_table[line][column] = result
+        #         elif len(self.parsing_table) > 10:  # Delete this 'len', do a case
+        #             pass  # Case for FOLLOW
+        #         else:
+        #             self.parsing_table[line][column] = 'ERR'
+
+        self.parsing_table['$']['$'] = "ACC"
 
     def print_table(self):
         print("------------- PARSING TABLE ----------------")
-        for line in self.parsing_table:
-            print(str(line) + ": " + str(self.parsing_table[line]))
+        # for line in self.parsing_table:
+        #     print(str(line) + ": " + str(self.parsing_table[line]))
         print('\n')
         table_line = "+---+"
-        for column in self.parsing_table[self.non_terminals[0]]:
+        for _ in self.parsing_table[self.non_terminals[0]]:
             table_line += "--------+"
         print(table_line)
-        print("| \ ", end="")
+        print("|   ", end="")
         for column in self.parsing_table[self.non_terminals[0]]:
             print("|", end="")
             result = column
-            for i in range(0, int((8-len(result))/2)):
+            for i in range(0, int((8 - len(result)) / 2)):
                 print(" ", end="")
             print(result, end="")
-            for i in range(0, int((8-len(result))/2) + 1):
+            for i in range(0, int((8 - len(result)) / 2) + 1):
                 print(" ", end="")
         print("|")
         print(table_line)
@@ -109,19 +134,20 @@ class Grammar:
             line_title = line
             if len(line_title) == 1:
                 print(" " + line_title + " ", end="")
-            if len(line_title) == 3:
+            elif len(line_title) == 3:
                 print(line_title, end="")
+            else:
+                print("XXXXXXXXXX")
             for column in self.parsing_table[line]:
                 print("|", end="")
                 result = self.parsing_table[line][column]
-                for i in range(0, int((8-len(result))/2)):
+                for i in range(0, int((8 - len(result)) / 2)):
                     print(" ", end="")
                 print(result, end="")
-                for i in range(0, int((8-len(result))/2) + 1):
+                for i in range(0, int((8 - len(result)) / 2) + 1):
                     print(" ", end="")
             print("|")
             print(table_line)
-
 
         print("\n\n\n")
 
@@ -152,7 +178,7 @@ class Grammar:
 
     def print_productions_for_terminal(self, terminal):
         print("----- PRODUCTIONS FOR: \"" + terminal, end="\" ")
-        for i in range(0, 18-len(terminal)):
+        for i in range(0, 18 - len(terminal)):
             print("-", end="")
         print("")
         for rule in self.production_rules:
@@ -172,6 +198,7 @@ class Grammar:
 
         print("Grammar CFG")
         print("--------------------------------------------")
+        print('\n')
 
     def first(self, symbol):
         print("------------------ FIRST -------------------")
